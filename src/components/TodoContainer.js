@@ -22,8 +22,8 @@ class TodoContainer extends Component {
           }
         ]
        };
-       handleChange = () => {
-        console.log("clicked from todo list item");
+       handleChange = (id) => {
+        console.log(`item ${id} clicked`);
       };
     render() { 
         return (
