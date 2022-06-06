@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class TodoItem extends Component {
     render() { 
         return (
-            <li>{this.props.todo.title}</li>
+            <li><input type="checkbox" />{this.props.todo.title}</li>
         );
     }
 }
