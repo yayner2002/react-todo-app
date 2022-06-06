@@ -22,11 +22,14 @@ class TodoContainer extends Component {
           }
         ]
        };
+       handleChange = () => {
+        console.log("clicked from todo list item");
+      };
     render() { 
         return (
             <div>
                 <Header />
-                <TodosList todos={this.state.todos}/>
+                <TodosList todos={this.state.todos} handleChangeProps={this.handleChange} />
             </div>
         );
     }
