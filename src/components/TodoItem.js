@@ -11,7 +11,11 @@ class TodoItem extends Component {
       editing: true,
     })
   }
-  
+  handleUpdatedDone = event => {
+    if (event.key === "Enter") {
+      this.setState({ editing: false })
+    }
+  }
     render() {
         const completedStyle = {
             fontStyle: "italic",
@@ -28,6 +32,7 @@ if (this.state.editing) {
 } else {
   editMode.display = "none"
 }
+
           return (
             <li className={styles.item}>
               <div onDoubleClick={this.handleEditing} style={viewMode}>
@@ -46,7 +51,7 @@ if (this.state.editing) {
               </div>
               <input type="text" style={editMode} className={styles.textInput} value={title} onChange={e => {
     this.props.setUpdate(e.target.value, id)
-  }}/>
+  }} onKeyDown={this.handleUpdatedDone}/>
             </li>
           )
     }
