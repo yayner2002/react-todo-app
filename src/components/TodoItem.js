@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import styles from "./TodoItem.module.css"
 
 class TodoItem extends Component {
- 
+
+  handleEditing = () => {
+    console.log("edit mode activated")
+  }
     render() {
         const completedStyle = {
             fontStyle: "italic",
@@ -13,6 +16,7 @@ class TodoItem extends Component {
           const { completed, id, title } = this.props.todo
           return (
             <li className={styles.item}>
+              <div onDoubleClick={this.handleEditing}>
               <input
                 type="checkbox"
                 className={styles.checkbox}
@@ -25,6 +29,8 @@ class TodoItem extends Component {
               <span style={completed ? completedStyle : null}>
                 {title}
               </span>
+              </div>
+              <input type="text" className={styles.textInput} />
             </li>
           )
     }
