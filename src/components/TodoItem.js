@@ -1,7 +1,9 @@
-import React from "react";
+import React, { Component } from 'react';
 
-function TodoItem(props) {
-  return <li key={props.todo.id}>{props.todo.title}</li>;
+class TodoItem extends Component {
+  render() {
+    return <li key={this.props.todo.id}>{this.props.todo.title}</li>;
+  }
 }
 
 export default TodoItem;
