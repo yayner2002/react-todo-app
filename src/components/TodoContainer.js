@@ -25,6 +25,16 @@ class TodoContainer extends Component {
       }
     });
   };
+
+  delTodo = deletedId => {
+   this.setState({
+    todos: [
+      ...this.state.todos.filter(todo => {
+        return todo.id !== deletedId
+      })
+    ]
+   })
+  };
   render() {
     return (
       <React.Fragment>
@@ -32,6 +42,7 @@ class TodoContainer extends Component {
         <TodoList
           todos={this.state.todos}
           handleChangeProps={this.handleChange}
+          deleteTodoProps={this.delTodo}
         />
       </React.Fragment>
     );

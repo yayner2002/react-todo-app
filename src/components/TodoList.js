@@ -10,6 +10,7 @@ class TodoList extends Component {
             todo={todo}
             key={todo.id}
             handleChangeProps={this.props.handleChangeProps}
+            deleteTodoProps={this.props.deleteTodoProps}
           />
         ))}
       </ul>
