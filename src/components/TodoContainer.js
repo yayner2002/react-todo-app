@@ -10,11 +10,15 @@ class TodoContainer extends Component {
       { id: 3, title: "Deploy to live server", completed: false },
     ],
   };
+
+  handleChange = (id) => {
+    console.log("input field clicked!!", id);
+  };
   render() {
     return (
       <React.Fragment>
         <Header />
-       <TodoList todos={this.state.todos} />
+        <TodoList todos={this.state.todos} handleChangeProps={this.handleChange} />
       </React.Fragment>
     );
   }

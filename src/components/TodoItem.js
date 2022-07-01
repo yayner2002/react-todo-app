@@ -8,7 +8,7 @@ class TodoItem extends Component {
           type="checkbox"
           checked={this.props.todo.completed}
           onChange={() => {
-            console.log("input field clicked");
+            this.props.handleChangeProps(this.props.todo.id)
           }}
         />
         {this.props.todo.title}
