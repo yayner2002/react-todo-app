@@ -11,8 +11,8 @@ class TodoItem extends Component {
     });
   };
 
-  handleUpdatedDone = (e) => {
-    if (e.key === "Enter") {
+  handleUpdatedDone = (event) => {
+    if (event.key === "Enter") {
       this.setState({
         editing: false,
       });
