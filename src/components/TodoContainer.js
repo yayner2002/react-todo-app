@@ -50,7 +50,8 @@ class TodoContainer extends Component {
   }
   render() {
     return (
-      <React.Fragment>
+      <div className="container">
+        <div className="inner">
         <Header />
         <InputTodo addTodoProps={this.addTodoItem}/>
         <TodoList
@@ -58,7 +59,8 @@ class TodoContainer extends Component {
           handleChangeProps={this.handleChange}
           deleteTodoProps={this.delTodo}
         />
-      </React.Fragment>
+        </div>
+      </div>
     );
   }
 }
