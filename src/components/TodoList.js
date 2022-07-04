@@ -7,6 +7,7 @@ class TodoList extends Component {
       <ul>
         {this.props.todos.map((todo) => (
           <TodoItem
+            setUpdate={this.props.setUpdate}
             todo={todo}
             key={todo.id}
             handleChangeProps={this.props.handleChangeProps}
