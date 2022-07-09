@@ -57,12 +57,29 @@ class TodoContainer extends Component {
     })
   };
 
-  componentDidMount() {
-    fetch("https://jsonplaceholder.typicode.com/todos?_limit=10")
-    .then(response => response.json())
-    .then(data => this.setState({
-      todos: data
-    }))
+  // componentDidMount() {
+  //   fetch("https://jsonplaceholder.typicode.com/todos?_limit=10")
+  //   .then(response => response.json())
+  //   .then(data => this.setState({
+  //     todos: data
+  //   }))
+  // }
+
+  componentDidMount(){
+    const localStorageData = localStorage.getItem("todos")
+    const localStorageDataParsed = JSON.parse(localStorageData)
+    if(localStorageDataParsed){
+      this.setState({
+        todos:localStorageDataParsed
+      })
+    }
+  }
+  componentDidUpdate(previousProps, previousState){
+    if(previousState.todos !== this.state.todos){
+      const todoData = this.state.todos
+      const localStorageData = JSON.stringify(todoData);
+      localStorage.setItem("todos", localStorageData);
+    }
   }
   render() {
     return (
