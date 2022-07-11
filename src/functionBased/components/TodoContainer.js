@@ -1,102 +1,86 @@
-import React, { Component } from "react";
-import TodoList from "./TodoList";
-import Header from "./Header";
-import InputTodo from "./InputTodo";
-import { v4 as uuidv4 } from "uuid";
+import React, { useState, useEffect } from "react"
+import Header from "./Header"
+import InputTodo from "./InputTodo"
+import TodoList from "./TodoList"
+import { v4 as uuidv4 } from "uuid"
 
-class TodoContainer extends Component {
-  state = {
-    todos: [],
-  };
+const TodoContainer = () => {
+  const [todos, setTodos] = useState([])
 
-  handleChange = (itemId) => {
-    this.setState((previousState) => {
-      return {
-        todos: previousState.todos.map((todo) => {
-          if (todo.id === itemId) {
-            return {
-              ...todo,
-              completed: !todo.completed,
-            };
+  const handleChange = id => {
+    setTodos(prevState =>
+      prevState.map(todo => {
+        if (todo.id === id) {
+          return {
+            ...todo,
+            completed: !todo.completed,
           }
-          return todo;
-        }),
-      };
-    });
-  };
+        }
+        return todo
+      })
+    )
+  }
 
-  delTodo = (deletedId) => {
-    this.setState({
-      todos: [
-        ...this.state.todos.filter((todo) => {
-          return todo.id !== deletedId;
-        }),
-      ],
-    });
-  };
+  const delTodo = id => {
+    setTodos([
+      ...todos.filter(todo => {
+        return todo.id !== id
+      }),
+    ])
+  }
 
-  addTodoItem = (title) => {
+  const addTodoItem = title => {
     const newTodo = {
       id: uuidv4(),
       title: title,
       completed: false,
-    };
-    this.setState({
-      todos: [...this.state.todos, newTodo],
-    });
-  };
+    }
+    setTodos([...todos, newTodo])
+  }
 
-  setUpdate = (updatedTitle, id) => {
-    this.setState({
-      todos: this.state.todos.map(todo => {
-        if(todo.id === id) {
+  const setUpdate = (updatedTitle, id) => {
+    setTodos(
+      todos.map(todo => {
+        if (todo.id === id) {
           todo.title = updatedTitle
         }
         return todo
       })
-    })
-  };
-
-  // componentDidMount() {
-  //   fetch("https://jsonplaceholder.typicode.com/todos?_limit=10")
-  //   .then(response => response.json())
-  //   .then(data => this.setState({
-  //     todos: data
-  //   }))
-  // }
-
-  componentDidMount(){
-    const localStorageData = localStorage.getItem("todos")
-    const localStorageDataParsed = JSON.parse(localStorageData)
-    if(localStorageDataParsed){
-      this.setState({
-        todos:localStorageDataParsed
-      })
-    }
+    )
   }
-  componentDidUpdate(previousProps, previousState){
-    if(previousState.todos !== this.state.todos){
-      const todoData = this.state.todos
-      const localStorageData = JSON.stringify(todoData);
-      localStorage.setItem("todos", localStorageData);
+
+  useEffect(() => {
+    // storing todos items
+    const temp = JSON.stringify(todos)
+    localStorage.setItem("todos", temp)
+  }, [todos])
+  
+  useEffect(() => {
+    console.log("test run")
+  
+    // getting stored items
+    const temp = localStorage.getItem("todos")
+    const loadedTodos = JSON.parse(temp)
+  
+    if (loadedTodos) {
+      setTodos(loadedTodos)
     }
-  }
-  render() {
-    return (
-      <div className="container">
-        <div className="inner">
-          <Header />
-          <InputTodo addTodoProps={this.addTodoItem} />
-          <TodoList
-            setUpdate={this.setUpdate}
-            todos={this.state.todos}
-            handleChangeProps={this.handleChange}
-            deleteTodoProps={this.delTodo}
-          />
-        </div>
+  }, [])
+
+  return (
+    <div className="container">
+      <div className="inner">
+        <Header />
+        <InputTodo addTodoProps={addTodoItem} />
+        <TodoList
+          todos={todos}
+          handleChangeProps={handleChange}
+          deleteTodoProps={delTodo}
+          setUpdate={setUpdate}
+        />
       </div>
-    );
-  }
+    </div>
+  )
 }
 
-export default TodoContainer;
+export default TodoContainer
