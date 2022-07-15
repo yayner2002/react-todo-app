@@ -21,7 +21,7 @@ const Navbar = () => {
         {links.map((link) => {
           return (
             <li key={link.id}>
-              <NavLink to={link.path} activeClassName="active-link" exact>
+              <NavLink to={link.path} activeclassname="active-link">
                 {link.text}
               </NavLink>
             </li>

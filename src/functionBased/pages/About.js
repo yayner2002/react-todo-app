@@ -1,6 +1,8 @@
-import React from "react"
+import React from "react";
+import { matchRoutes } from "react-router-dom";
 
-const About = () => {
-  return <div>hello from about page</div>
-}
-export default About
+const About = (props) => {
+  console.log(matchRoutes());
+  return <div>hello from about page</div>;
+};
+export default About;
