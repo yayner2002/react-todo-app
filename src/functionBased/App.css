@@ -153,3 +153,7 @@ a {
 .menuNav li:first-child {
   margin-top: 7rem;
 }
+.navBar button {
+  background: transparent;
+  border: none;
+}
