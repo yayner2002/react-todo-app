@@ -2,14 +2,14 @@ import React from "react";
 import "./functionBased/App.css";
 import { createRoot } from "react-dom/client";
 import TodoContainer from "./functionBased/components/TodoContainer";
-import { HashRouter  as Router } from "react-router-dom";
+import { BrowserRouter  as Router } from "react-router-dom";
 
 const container = document.getElementById("root");
 const root = createRoot(container);
 
 root.render(
   <React.StrictMode>
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <TodoContainer />
     </Router>
   </React.StrictMode>
