@@ -20,6 +20,9 @@ const Navbar = () => {
   const handleTogggle = () => {
     setnavbarOpen((prevState) => !prevState);
   };
+  const closeMenu = () => {
+    setnavbarOpen(false);
+  };
   return (
     <nav className="navBar">
       <button onClick={handleTogggle}>{navbarOpen ? "close" : "open"}</button>
@@ -27,7 +30,11 @@ const Navbar = () => {
         {links.map((link) => {
           return (
             <li key={link.id}>
-              <NavLink to={link.path} activeclassname="active-link">
+              <NavLink
+                to={link.path}
+                activeclassname="active-link"
+                onClick={() => closeMenu()}
+              >
                 {link.text}
               </NavLink>
             </li>
