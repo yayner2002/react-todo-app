@@ -11,7 +11,7 @@
 [Live Demo Link](https://yayner2002.github.io/react-todo-app/)
 
 ## Screenshot
-![home page](app_screenshot.png?raw=true "home screenshot")
+![home page](/public/reacttodo.png?raw=true "home screenshot")
 ## Getting Started
 
 To get a local copy up and running follow these simple example steps.
